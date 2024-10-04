@@ -19,38 +19,60 @@
 
 
 <div id="result">This text will be replaced </div>
+<div id="images">
+    <img id="image" src="Cherry delight.jpg" onclick="nextImage()" height="200px" width="200px">
+</div>
 
+<script>
+    let showing = 1
+    function nextImage(){
+        switch(showing){
+            case 1:
+                document.getElementById('image').src = "Cherry delight.jpg"; 
+                showing ++
+                break;
+            case 2:
+                document.getElementById('image').src = "Eclair.jpg"; 
+                showing ++
+                break;
+            case 3:
+                document.getElementById('image').src = 'Red Velvet Cake.jpg'; 
+                showing =1;
+                break;
+        }
+    }
+</script>
 <script> 
-let attempts = 0
-let wrong = 0
-function processColor(){
-    color= document.getElementById("Mysterycolor").value
-    guess= document.getElementById("guess").value
+    let attempts = 0
+    let wrong = 0
+    function processColor(){
+        color= document.getElementById("Mysterycolor").value
+        guess= document.getElementById("guess").value
 
-    if(color.toLowerCase() !== guess.toLowerCase()){
-        wrong ++
-        alert("That was not it")
+        if(color.toLowerCase() !== guess.toLowerCase()){
+            wrong ++
+            alert("That was not it")
+        }
+        else{
+            alert("You got it")
+        }
+        attempts ++
+        document.getElementById('result').innerHTML = `Attempts: ${attempts}  Wrong guesses: ${wrong}`
     }
-    else{
-        alert("You got it")
-    }
-    attempts ++
-    document.getElementById('result').innerHTML = `Attempts: ${attempts}  Wrong guesses: ${wrong}`
-}
 
-function resolveForm (){
-    console.log("Getting form values")
-    age = document.getElementById("form1_age").value
-    nick = document.getElementById("form1_nick").value
-    confirmed = confirm("Are these the values? "+age+" and "+nick)
+    function resolveForm (){
+        console.log("Getting form values")
+        age = document.getElementById("form1_age").value
+        nick = document.getElementById("form1_nick").value
+        confirmed = confirm("Are these the values? "+age+" and "+nick)
     
-    out = document.getElementById("result")
-    if(confirmed){
-        out.innerHTML = "Values were confirmed"
-    } else {
-        out.innerHTML = "Values were not confirmed"
+        out = document.getElementById("result")
+        if(confirmed){
+            out.innerHTML = "Values were confirmed"
+        } else {
+            out.innerHTML = "Values were not confirmed"
+        }
     }
-}
 </script>
 
 </body>
