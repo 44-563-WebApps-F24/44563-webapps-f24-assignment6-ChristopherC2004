@@ -18,20 +18,71 @@
 </form>
 
 
-<div id="result">This text will be replaced </div>
+<div id="result1">Lets find an Exponential sum </div>
+
+    <input type="radio" onclick="processRadio()" id="Max" name="radio" value="max"   
+      checked >
+    <label for="Max">Max</label></br>
+  
+    <input type="radio" onclick="processRadio()" id="Min" name="radio" 
+       value="min">
+    <label for="Min">Min</label></br>
+  
+    <input type="radio" onclick="processRadio()" id="Average" name="radio"   
+       value="avg">
+    <label for="Average">Average</label></br>
+
+    <input type="radio" onclick="processRadio()" id="Geometric" name="radio"   
+       value="geo">
+    <label for="Geometric">Geometric</label></br>
+
+  </form>
+<div id="result2"> Radio button answers</div>
 
 <script> 
 
-function powerSum(){
-    console.log("Getting form values")
-    num1 = document.getElementById("First").value
-    num2 = document.getElementById("Second").value
-    sum = 0
-    for(let i=0;i<num1;i++){
-        sum += num2**i
+    function processRadio(){
+        let num1 = parseFloat(document.getElementById("First").value)
+        let num2 = parseFloat(document.getElementById("Second").value)
+        let operation = document.querySelector('input[name="radio"]:checked').value
+        let result
+        let operationName
+
+        console.log("First:", num1, "Second:", num2)
+
+        switch (operation) {
+            case 'max':
+                result = Math.max(num1, num2)
+                operationName = 'Max'
+                break
+            case 'min':
+                result = Math.min(num1, num2)
+                operationName = 'Min'
+                break
+            case 'avg':
+                result = (num1 + num2) / 2
+                operationName = 'Average'
+                break
+            case 'geo':
+                result = Math.sqrt(num1 * num2) 
+                operationName = 'Geometric'
+                break
+        }
+        console.log("Operation:", operationName, "Result:", result)
+        document.getElementById('result2').innerHTML = `Computed ${operationName} of the values ${num1} and ${num2} results in ${result}`
     }
-    document.getElementById('result').innerHTML = `Sum of ${num1} powers with base ${num2} is ${sum}`
-}
+
+    function powerSum(){
+        console.log("Getting form values")
+        num1 = document.getElementById("First").value
+        num2 = document.getElementById("Second").value
+        sum = 0
+        for(let i=0;i<num1;i++){
+            sum += num2**i
+        }
+        
+        document.getElementById('result1').innerHTML = `Sum of ${num1} powers with base ${num2} is ${sum}`
+    }
 </script>
 
 </body>
