@@ -22,26 +22,51 @@
         <input type="button" onclick="startLunch()" value="Start a lunch order">
       </form>
       
-
-
 <p id="lunch">This text will be replaced </p>
+
+      <form>
+        <label for="propertyName">Enter property:</label>
+        <input type="text" id="propertyName" value="entree"><br>
+
+        <label for="propertyValue">Set it to:</label>
+        <input type="text" id="propertyValue"><br>
+
+        <button type="button" onclick="updateLunch()">Update the lunch</button>
+      </form>
 
 <script> 
   let my_lunch = {}
 
   function startLunch() {
-    let my_lunch = {}
+    my_lunch = {}
     my_lunch.drink = document.getElementById('Drink').checked
-    my_lunch.side = document.getElementById('Side').checked;
-    my_lunch.in = document.getElementById('Eat in').checked;
+    my_lunch.side = document.getElementById('Side').checked
+    my_lunch.in = document.getElementById('Eat in').checked
 
     let lunchDetails = "<strong>Lunch Selection:</strong><br>"
     lunchDetails += "Drink: " + (my_lunch.drink ? "Yes" : "No") + "<br>"
     lunchDetails += "Side: " + (my_lunch.side ? "Yes" : "No") + "<br>"
     lunchDetails += "In: " + (my_lunch.in ? "Yes" : "No") + "<br>"
-    
-    document.getElementById('lunch').innerHTML = lunchDetails
 
+    document.getElementById('lunch').innerHTML = lunchDetails
+  }
+
+  function updateLunch(){
+    let propertyName = document.getElementById('propertyName').value
+    let propertyValue = document.getElementById('propertyValue').value.toLowerCase()
+
+    if (propertyValue === 'true' || propertyValue === 'false') {
+      my_lunch[propertyName] = (propertyValue === 'true')
+
+      let lunchDetails = "<strong>Updated Lunch Selection:</strong><br>"
+      lunchDetails += "Drink: " + (my_lunch.drink ? "Yes" : "No") + "<br>"
+      lunchDetails += "Side: " + (my_lunch.side ? "Yes" : "No") + "<br>"
+     lunchDetails += "In: " + (my_lunch.in ? "Yes" : "No") + "<br>"
+
+      document.getElementById('lunch').innerHTML = lunchDetails
+    } else {
+      document.getElementById('lunch').innerHTML = "Please enter 'true' or 'false' when updating."
+    }
   }
 function resolveCheck() {
     console.log("Getting input")
