@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lunch</title>
+</head>
+<body>
+
+<h2>Christopher Carter orders a lunch</h2>      
+      <form>
+        <input type="checkbox" id="Drink" name="Drink"   
+          value="drink" checked>
+        <label for="Drink">Drink</label></br>
+      
+        <input type="checkbox" id="Side" name="Side" 
+           value="side">
+        <label for="Side">Side</label></br>
+      
+        <input type="checkbox" id="Eat in" name="Eat in"   
+           value="in" checked>
+        <label for="Eat in">Eat in</label></br>
+
+        <input type="button" onclick="startLunch()" value="Start a lunch order">
+      </form>
+      
+
+
+<p id="lunch">This text will be replaced </p>
+
+<script> 
+  let my_lunch = {}
+
+  function startLunch() {
+    let my_lunch = {}
+    my_lunch.drink = document.getElementById('Drink').checked
+    my_lunch.side = document.getElementById('Side').checked;
+    my_lunch.in = document.getElementById('Eat in').checked;
+
+    let lunchDetails = "<strong>Lunch Selection:</strong><br>"
+    lunchDetails += "Drink: " + (my_lunch.drink ? "Yes" : "No") + "<br>"
+    lunchDetails += "Side: " + (my_lunch.side ? "Yes" : "No") + "<br>"
+    lunchDetails += "In: " + (my_lunch.in ? "Yes" : "No") + "<br>"
+    
+    document.getElementById('lunch').innerHTML = lunchDetails
+
+  }
+function resolveCheck() {
+    console.log("Getting input")
+    cheese = document.getElementById("cb1_cheese").checked
+    olives = document.getElementById("cb1_olive").checked
+    onions = document.getElementById("cb1_onion").checked
+    confirmed = confirm("Are these the values? "+cheese+" and "+olives+" and "+onions)
+    
+    out = document.getElementById("result")
+    if(confirmed){
+        out.innerHTML = "Values were confirmed"
+    } else {
+        out.innerHTML = "Values were not confirmed"
+    }
+}
+
+function resolveRadio() {
+    console.log("Getting input")
+    redOpt = document.getElementById("rg1_red").checked
+    blueOpt = document.getElementById("rg1_blue").checked
+    greenOpt = document.getElementById("rg1_green").checked
+    confirmed = confirm("Are these the values? "+redOpt+" and "+blueOpt+" and "+greenOpt)
+    
+    out = document.getElementById("result")
+    if(confirmed){
+        out.innerHTML = "Values were confirmed"
+    } else {
+        out.innerHTML = "Values were not confirmed"
+    }
+}
+
+</script>
+
+</body>
+</html> 
